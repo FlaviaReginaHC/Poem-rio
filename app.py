@@ -169,11 +169,14 @@ elif pagina == "Relatórios":
 elif pagina == "Importar / Exportar":
     st.title("Importar e exportar")
     st.write("Faça cópias de segurança ou importe uma planilha com poemas.")
+
     atual = carregar_poemas()
+
     if not atual.empty:
         buffer_excel = BytesIO()
         atual.to_excel(buffer_excel, index=False, engine="openpyxl")
         buffer_excel.seek(0)
+
         st.download_button(
             "⬇️ Baixar biblioteca em Excel",
             data=buffer_excel.getvalue(),
@@ -181,35 +184,70 @@ elif pagina == "Importar / Exportar":
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             use_container_width=True
         )
+
         csv = atual.to_csv(index=False).encode("utf-8-sig")
-        st.download_button("⬇️ Baixar biblioteca em CSV", data=csv, file_name="biblioteca_de_poemas.csv", mime="text/csv")
+
+        st.download_button(
+            "⬇️ Baixar biblioteca em CSV",
+            data=csv,
+            file_name="biblioteca_de_poemas.csv",
+            mime="text/csv"
+        )
+
     st.divider()
+
     st.subheader("Importar planilha Excel")
-    st.caption("A planilha deve conter colunas como Título, Autor, Tema, Categoria, Data do poema, Palavras-chave, Poema e Observações.")
-    up = st.file_uploader("Selecione um arquivo .xlsx", type=["xlsx"])
+
+    st.caption(
+        "A planilha deve conter as colunas Título e Poema."
+    )
+
+    up = st.file_uploader(
+        "Selecione um arquivo .xlsx",
+        type=["xlsx"]
+    )
+
     if up and st.button("Importar poemas", type="primary"):
         try:
             entrada = pd.read_excel(up)
             entrada.columns = [str(c).strip() for c in entrada.columns]
-            obrigatorias = ["Título", "Poema"]
-            if not all(c in entrada.columns for c in obrigatorias):
-                st.error("A planilha precisa ter pelo menos as colunas Título e Poema.")
+
+            if not all(c in entrada.columns for c in ["Título", "Poema"]):
+                st.error("A planilha precisa conter Título e Poema.")
+
             else:
                 for c in COLUNAS:
                     if c not in entrada.columns:
                         entrada[c] = ""
 
-                # Gera IDs novos para evitar conflitos com registros já existentes.
-                proximo_id = int(pd.to_numeric(atual["ID"], errors="coerce").fillna(0).max()) + 1 if not atual.empty else 1
+                proximo_id = (
+                    int(pd.to_numeric(atual["ID"], errors="coerce").fillna(0).max()) + 1
+                    if not atual.empty else 1
+                )
+
                 entrada = entrada[COLUNAS].copy()
-                entrada["ID"] = range(proximo_id, proximo_id + len(entrada))
-                entrada["Data de cadastro"] = pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")
+
+                entrada["ID"] = range(
+                    proximo_id,
+                    proximo_id + len(entrada)
+                )
+
+                entrada["Data de cadastro"] = pd.Timestamp.now().strftime(
+                    "%Y-%m-%d %H:%M:%S"
+                )
+
                 entrada = entrada.fillna("")
-                salvar_poemas(pd.concat([atual, entrada], ignore_index=True))
-                st.session_state["flash"] = f"{len(entrada)} linha(s) importada(s)."
+
+                salvar_poemas(
+                    pd.concat([atual, entrada], ignore_index=True)
+                )
+
+                st.success("Poemas importados com sucesso!")
                 st.rerun()
+
         except Exception as e:
-            st.error(f"Não foi possível importar a planilha: {e}")
+            st.error(f"Erro ao importar: {e}")
+
 
 st.sidebar.divider()
 st.sidebar.caption("Poemário • Desenvolvido com Streamlit e Excel")
