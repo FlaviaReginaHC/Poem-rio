@@ -1,0 +1,13 @@
+<style>
+.stApp { background: #fbfaf7; }
+[data-testid="stSidebar"] { background: #f1eee8; }
+.eyebrow { color: #9b6b4b; letter-spacing: .18em; font-size: .72rem; font-weight: 700; margin-bottom: .5rem; }
+h1, h2, h3 { color: #342b28; }
+.poem-text {
+    background: #f5f0e8; border-left: 4px solid #b7835c; border-radius: 8px;
+    padding: 18px 22px; line-height: 1.9; font-family: Georgia, serif;
+    font-size: 1.05rem; color: #3d3330; white-space: normal;
+}
+div[data-testid="stMetric"] { background: #fff; padding: 14px; border: 1px solid #eee5dc; border-radius: 12px; }
+.stButton button[kind="primary"], .stFormSubmitButton button[kind="primary"] { background: #8e5d42; border-color: #8e5d42; }
+</style>
