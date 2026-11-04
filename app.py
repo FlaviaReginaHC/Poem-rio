@@ -178,7 +178,7 @@ elif pagina == "Importar / Exportar":
         buffer_excel.seek(0)
 
         st.download_button(
-            "⬇️ Baixar biblioteca em Excel",
+            label="⬇️ Baixar biblioteca em Excel",
             data=buffer_excel.getvalue(),
             file_name="biblioteca_de_poemas.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -188,19 +188,15 @@ elif pagina == "Importar / Exportar":
         csv = atual.to_csv(index=False).encode("utf-8-sig")
 
         st.download_button(
-            "⬇️ Baixar biblioteca em CSV",
+            label="⬇️ Baixar biblioteca em CSV",
             data=csv,
             file_name="biblioteca_de_poemas.csv",
             mime="text/csv"
         )
 
     st.divider()
-
     st.subheader("Importar planilha Excel")
-
-    st.caption(
-        "A planilha deve conter as colunas Título e Poema."
-    )
+    st.caption("A planilha deve conter as colunas Título e Poema.")
 
     up = st.file_uploader(
         "Selecione um arquivo .xlsx",
@@ -211,10 +207,10 @@ elif pagina == "Importar / Exportar":
         try:
             entrada = pd.read_excel(up)
             entrada.columns = [str(c).strip() for c in entrada.columns]
+            entrada = entrada.fillna("")
 
             if not all(c in entrada.columns for c in ["Título", "Poema"]):
                 st.error("A planilha precisa conter Título e Poema.")
-
             else:
                 for c in COLUNAS:
                     if c not in entrada.columns:
@@ -226,17 +222,13 @@ elif pagina == "Importar / Exportar":
                 )
 
                 entrada = entrada[COLUNAS].copy()
-
                 entrada["ID"] = range(
                     proximo_id,
                     proximo_id + len(entrada)
                 )
-
                 entrada["Data de cadastro"] = pd.Timestamp.now().strftime(
                     "%Y-%m-%d %H:%M:%S"
                 )
-
-                entrada = entrada.fillna("")
 
                 salvar_poemas(
                     pd.concat([atual, entrada], ignore_index=True)
