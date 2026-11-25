@@ -1,99 +1,126 @@
-/* Força o esquema de cores claro no navegador */
-:root {
-    color-scheme: light !important;
-}
-
-/* Fundo principal da aplicação (Creme suave) */
-.stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+/* Bloqueia qualquer adaptação ao modo escuro do dispositivo */
+:root, html, body {
+    color-scheme: only light !important;
     background-color: #FFF9F2 !important;
     color: #3E2723 !important;
 }
 
-/* Títulos em Marrom Café */
-h1, h2, h3, .stMarkdown p {
+/* Fundo geral e cabeçalho superior */
+.stApp, 
+[data-testid="stAppViewContainer"], 
+[data-testid="stHeader"],
+[data-testid="stToolbar"],
+section.main {
+    background-color: #FFF9F2 !important;
     color: #3E2723 !important;
 }
 
+/* Todos os textos, rótulos de formulário e legendas */
+h1, h2, h3, h4, p, span, label, div[data-testid="stMarkdownContainer"] {
+    color: #3E2723 !important;
+}
+
+/* Título principal */
 h1 {
-    font-family: 'Georgia', serif;
+    font-family: 'Georgia', serif !important;
     color: #4E342E !important;
-    border-bottom: 2px solid #E6A15C;
-    padding-bottom: 10px;
+    border-bottom: 2px solid #E6A15C !important;
+    padding-bottom: 10px !important;
 }
 
-/* Abas de navegação */
+/* Abas (Acervo / Cadastrar) */
 button[data-baseweb="tab"] {
+    background-color: transparent !important;
+}
+button[data-baseweb="tab"] p {
     color: #6D4C41 !important;
+    font-weight: 600 !important;
+}
+button[data-baseweb="tab"][aria-selected="true"] p {
+    color: #C85A17 !important;
+}
+div[data-baseweb="tab-highlight"] {
+    background-color: #C85A17 !important;
 }
 
-button[data-baseweb="tab"][aria-selected="true"] {
-    color: #C85A17 !important;
-    border-bottom-color: #C85A17 !important;
+/* Caixa do formulário de cadastro */
+[data-testid="stForm"] {
+    background-color: #FDF3E7 !important;
+    border: 1px solid #E6C8A8 !important;
+    border-radius: 10px !important;
+    padding: 20px !important;
+}
+
+/* Campos de entrada (Input, Textarea e Selectbox) */
+input, textarea, 
+div[data-baseweb="input"] > div,
+div[data-baseweb="textarea"] > div,
+div[data-baseweb="select"] > div {
+    background-color: #FFFFFF !important;
+    color: #3E2723 !important;
+    border-color: #D7B89C !important;
+    -webkit-text-fill-color: #3E2723 !important;
+}
+
+/* Menu suspenso aberto (opções da Categoria) */
+ul[data-baseweb="menu"], ul[data-baseweb="menu"] li {
+    background-color: #FFFFFF !important;
+    color: #3E2723 !important;
+}
+ul[data-baseweb="menu"] li:hover {
+    background-color: #F5E6D3 !important;
 }
 
 /* Cartão de exibição do poema */
 .poema-card {
     background-color: #FFFFFF !important;
-    border: 1px solid #F0D9C0;
-    border-left: 5px solid #D96B27;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 15px;
-    box-shadow: 0 3px 8px rgba(78, 52, 46, 0.08);
+    border: 1px solid #F0D9C0 !important;
+    border-left: 5px solid #D96B27 !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    margin-bottom: 15px !important;
+    box-shadow: 0 3px 8px rgba(78, 52, 46, 0.08) !important;
 }
 
 .poema-titulo {
-    font-family: 'Georgia', serif;
-    font-size: 1.35rem;
-    font-weight: bold;
+    font-family: 'Georgia', serif !important;
+    font-size: 1.35rem !important;
+    font-weight: bold !important;
     color: #4E342E !important;
-    margin-bottom: 4px;
+    margin-bottom: 4px !important;
 }
 
 .poema-meta {
-    font-size: 0.9rem;
+    font-size: 0.9rem !important;
     color: #8D6E63 !important;
-    margin-bottom: 15px;
+    margin-bottom: 15px !important;
 }
 
 .poema-versos {
-    font-family: 'Georgia', serif;
-    font-size: 1.05rem;
-    line-height: 1.65;
-    white-space: pre-wrap;
+    font-family: 'Georgia', serif !important;
+    font-size: 1.05rem !important;
+    line-height: 1.65 !important;
+    white-space: pre-wrap !important;
     color: #3E2723 !important;
     background-color: #FDF3E7 !important;
-    border: 1px solid #F3E0C8;
-    padding: 16px;
-    border-radius: 6px;
+    border: 1px solid #F3E0C8 !important;
+    padding: 16px !important;
+    border-radius: 6px !important;
 }
 
-/* Campos de texto, busca e caixas de seleção */
-input, textarea, [data-baseweb="select"] > div {
-    background-color: #FFFFFF !important;
-    color: #3E2723 !important;
-    border-color: #D7B89C !important;
-}
-
-/* Botões principais (Laranja Terracota) */
-button[kind="primary"] {
+/* Botões (Salvar e Excluir) */
+button[kind="primary"], [data-testid="stFormSubmitButton"] button {
     background-color: #C85A17 !important;
-    color: #FFFFFF !important;
     border: none !important;
 }
-
-button[kind="primary"]:hover {
-    background-color: #A8480F !important;
+button[kind="primary"] p, [data-testid="stFormSubmitButton"] button p {
+    color: #FFFFFF !important;
 }
 
-/* Botões secundários (Excluir) */
 button[kind="secondary"] {
     background-color: #F5E6D3 !important;
-    color: #5D4037 !important;
     border: 1px solid #D7B89C !important;
 }
-
-button[kind="secondary"]:hover {
-    background-color: #EAD3B7 !important;
-    color: #3E2723 !important;
+button[kind="secondary"] p {
+    color: #5D4037 !important;
 }
