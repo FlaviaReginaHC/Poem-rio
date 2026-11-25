@@ -1,48 +1,99 @@
-/* Estilização geral */
-.stApp {
-    background-color: #faf8f5;
-    color: #2c2a29;
+/* Força o esquema de cores claro no navegador */
+:root {
+    color-scheme: light !important;
 }
 
-/* Título principal */
+/* Fundo principal da aplicação (Creme suave) */
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+    background-color: #FFF9F2 !important;
+    color: #3E2723 !important;
+}
+
+/* Títulos em Marrom Café */
+h1, h2, h3, .stMarkdown p {
+    color: #3E2723 !important;
+}
+
 h1 {
     font-family: 'Georgia', serif;
-    color: #3d2c2e;
-    border-bottom: 2px solid #d4c5b9;
+    color: #4E342E !important;
+    border-bottom: 2px solid #E6A15C;
     padding-bottom: 10px;
+}
+
+/* Abas de navegação */
+button[data-baseweb="tab"] {
+    color: #6D4C41 !important;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #C85A17 !important;
+    border-bottom-color: #C85A17 !important;
 }
 
 /* Cartão de exibição do poema */
 .poema-card {
-    background-color: #ffffff;
-    border-left: 4px solid #6b4c4e;
-    border-radius: 6px;
+    background-color: #FFFFFF !important;
+    border: 1px solid #F0D9C0;
+    border-left: 5px solid #D96B27;
+    border-radius: 8px;
     padding: 20px;
     margin-bottom: 15px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 8px rgba(78, 52, 46, 0.08);
 }
 
 .poema-titulo {
     font-family: 'Georgia', serif;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     font-weight: bold;
-    color: #3d2c2e;
+    color: #4E342E !important;
     margin-bottom: 4px;
 }
 
 .poema-meta {
     font-size: 0.9rem;
-    color: #6e665f;
+    color: #8D6E63 !important;
     margin-bottom: 15px;
 }
 
 .poema-versos {
     font-family: 'Georgia', serif;
     font-size: 1.05rem;
-    line-height: 1.6;
+    line-height: 1.65;
     white-space: pre-wrap;
-    color: #1f1e1d;
-    background-color: #fcfbf9;
-    padding: 15px;
-    border-radius: 4px;
+    color: #3E2723 !important;
+    background-color: #FDF3E7 !important;
+    border: 1px solid #F3E0C8;
+    padding: 16px;
+    border-radius: 6px;
+}
+
+/* Campos de texto, busca e caixas de seleção */
+input, textarea, [data-baseweb="select"] > div {
+    background-color: #FFFFFF !important;
+    color: #3E2723 !important;
+    border-color: #D7B89C !important;
+}
+
+/* Botões principais (Laranja Terracota) */
+button[kind="primary"] {
+    background-color: #C85A17 !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+button[kind="primary"]:hover {
+    background-color: #A8480F !important;
+}
+
+/* Botões secundários (Excluir) */
+button[kind="secondary"] {
+    background-color: #F5E6D3 !important;
+    color: #5D4037 !important;
+    border: 1px solid #D7B89C !important;
+}
+
+button[kind="secondary"]:hover {
+    background-color: #EAD3B7 !important;
+    color: #3E2723 !important;
 }
