@@ -1,13 +1,48 @@
-<style>
-.stApp { background: #fbfaf7; }
-[data-testid="stSidebar"] { background: #f1eee8; }
-.eyebrow { color: #9b6b4b; letter-spacing: .18em; font-size: .72rem; font-weight: 700; margin-bottom: .5rem; }
-h1, h2, h3 { color: #342b28; }
-.poem-text {
-    background: #f5f0e8; border-left: 4px solid #b7835c; border-radius: 8px;
-    padding: 18px 22px; line-height: 1.9; font-family: Georgia, serif;
-    font-size: 1.05rem; color: #3d3330; white-space: normal;
+/* Estilização geral */
+.stApp {
+    background-color: #faf8f5;
+    color: #2c2a29;
 }
-div[data-testid="stMetric"] { background: #fff; padding: 14px; border: 1px solid #eee5dc; border-radius: 12px; }
-.stButton button[kind="primary"], .stFormSubmitButton button[kind="primary"] { background: #8e5d42; border-color: #8e5d42; }
-</style>
+
+/* Título principal */
+h1 {
+    font-family: 'Georgia', serif;
+    color: #3d2c2e;
+    border-bottom: 2px solid #d4c5b9;
+    padding-bottom: 10px;
+}
+
+/* Cartão de exibição do poema */
+.poema-card {
+    background-color: #ffffff;
+    border-left: 4px solid #6b4c4e;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.poema-titulo {
+    font-family: 'Georgia', serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #3d2c2e;
+    margin-bottom: 4px;
+}
+
+.poema-meta {
+    font-size: 0.9rem;
+    color: #6e665f;
+    margin-bottom: 15px;
+}
+
+.poema-versos {
+    font-family: 'Georgia', serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    color: #1f1e1d;
+    background-color: #fcfbf9;
+    padding: 15px;
+    border-radius: 4px;
+}
