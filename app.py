@@ -4,14 +4,28 @@ import streamlit as st
 
 st.set_page_config(page_title="Poemário", page_icon="🪶", layout="centered")
 
+# 1. Trava o navegador para impedir inversão automática de cores (Dark Mode)
+st.markdown(
+    """
+    <meta name="color-scheme" content="only light">
+    <style>
+        html, body, [data-testid="stAppViewContainer"] {
+            color-scheme: only light !important;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-# Carrega o arquivo CSS externo
+
+# 2. Carrega o arquivo CSS externo
 def carregar_css(caminho_css):
     with open(caminho_css, "r", encoding="utf-8") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
 carregar_css("styles.css")
+
 excel.inicializar_excel()
 
 st.title("🪶 Poemário")
